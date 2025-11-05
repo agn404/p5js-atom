@@ -2,6 +2,11 @@ let vw, vh;
 let canvas;
 let searchInput;
 let atomicNumber = 2; // default
+let elementsData;
+
+function preload() {
+  elementsData = loadJSON("elements.json");
+}
 
 function setup() {
   vw = windowWidth;
@@ -132,21 +137,20 @@ function getEleconfigObj(atomicNumber) {
   return config;
 }
 
-//fix
 function updateLabel(atomicNumber) {
-  /*const element = elementsData[atomicNumber - 1];
+  const element = elementsData[atomicNumber - 1];
   if (element) {
-    //const label = createP(`${toSuperscript(atomicNumber)}${element.symbol}${element.name}`);
-  }*/
+    const label = createP(`${toSuperscript(atomicNumber)}${element.symbol}${element.name}`);
+  }
   return true;
 }
-//fix
+
 function getNeutron(atomicNumber) {
-  //const el = elementsData.find(e => e.number === atomicNumber);
-  //if (!el) return round(atomicNumber * 1.1); // fallback
-  //const mass = el.atomicWeight;
-  //const neutrons = Math.round(mass - atomicNumber);
-  //return neutrons;
+  const el = elementsData.find(e => e.number === atomicNumber);
+  if (!el) return round(atomicNumber * 1.1); // fallback
+  const mass = el.atomicWeight;
+  const neutrons = Math.round(mass - atomicNumber);
+  return neutrons;
   return round(atomicNumber * 1.1); // fallback
 }
 
@@ -218,3 +222,4 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
