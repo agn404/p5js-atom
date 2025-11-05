@@ -6,7 +6,10 @@ let atomicNumber = 2; // default
 let elementsData;
 
 function preload() {
-  elementsData = loadJSON("elements.json");
+  elementsData = loadJSON("elements.json",
+    () => console.log("JSON loaded!"),
+    err => console.error("Failed to load JSON:", err)
+  );
 }
 
 function setup() {
@@ -220,6 +223,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
