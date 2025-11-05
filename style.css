@@ -38,14 +38,14 @@ p {
 }
 
 #elementLabel {
-  padding:10px;
+  padding: 2px;
+  margin: 10px ;
   text-align: center;
   font-size: 1.5em;
   background: linear-gradient(to bottom right, #ff8583, red);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 6px black;
-  text-shadow: 0 20px 60px black;
+  display: inline-block;
 }
 
 #sInput {
@@ -54,4 +54,5 @@ p {
   border-radius: 10px;
   text-align: center;
 }
+
 
