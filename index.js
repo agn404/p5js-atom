@@ -31,10 +31,6 @@ function setup() {
 
   elementLabel = document.getElementById("elementLabel");
   
-  const label = createP("please select an element");
-  label.id("elementName");
-  label.parent("canvasParent");
-  
   updateLabel(atomicNumber);
 
   noLoop();
@@ -223,6 +219,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
