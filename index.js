@@ -1,6 +1,7 @@
 let vw, vh;
 let canvas;
 let searchInput;
+let elementLabel;
 let atomicNumber = 2; // default
 let elementsData;
 
@@ -27,6 +28,8 @@ function setup() {
   searchInput.attribute("min", "1");
   searchInput.attribute("max", "118");
   searchInput.input(handleSearch);
+
+  elementLabel = getElementById("elementLabel");
   
   const label = createP("please select an element");
   label.id("elementName");
@@ -138,11 +141,11 @@ function getEleconfigObj(atomicNumber) {
 }
 
 function updateLabel(atomicNumber) {
-  const element = elementsData[atomicNumber - 1];
-  if (element) {
-    const label = createP(`${toSuperscript(atomicNumber)}${element.symbol}${element.name}`);
+  function updateLabel(atomicNumber) {
+  const el = elementsData.find(e => e.number === atomicNumber);
+  if(el) {
+    elementLabel.innerHTML = `${toSuperscript(atomicNumber)}${el.symbol} — ${el.name}`;
   }
-  return true;
 }
 
 function getNeutron(atomicNumber) {
@@ -222,4 +225,5 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
