@@ -6,15 +6,10 @@ let atomicNumber = 2; // default
 let elementsData;
 
 function preload() {
-  /*elementsData = loadJSON("elements.json",
+  elementsData = loadJSON("elements.json",
     () => console.log("JSON loaded!"),
     err => console.error("Failed to load JSON:", err)
-  );*/
-  elementsData = [
-    {number: 1, symbol: "H", name: "Hydrogen", atomicWeight: 1.008},
-    {number: 2, symbol: "He", name: "Helium", atomicWeight: 4.0026}
-  ];
-  console.log("Using dummy elementsData", elementsData);
+  );
 }
 
 function setup() {
@@ -228,6 +223,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
