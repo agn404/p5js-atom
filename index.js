@@ -140,6 +140,7 @@ function updateLabel(atomicNumber) {
   const el = elementsData.find(e => e.number === atomicNumber);
   if(el) {
     elementLabel.innerHTML = `${toSuperscript(atomicNumber)}${el.symbol} — ${el.name}`;
+  }
 }
 
 function getNeutron(atomicNumber) {
@@ -219,6 +220,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
