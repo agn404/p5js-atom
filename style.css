@@ -37,7 +37,7 @@ p {
   margin: 0 0 15px 0;
 }
 
-#elementName {
+#elementLabel {
   padding:10px;
   text-align: center;
   font-size: 1.5em;
@@ -54,3 +54,4 @@ p {
   border-radius: 10px;
   text-align: center;
 }
+
