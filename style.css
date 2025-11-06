@@ -46,6 +46,7 @@ p {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+  color: transparent;
 }
 
 #sInput {
@@ -54,6 +55,7 @@ p {
   border-radius: 10px;
   text-align: center;
 }
+
 
 
 
