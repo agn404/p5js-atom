@@ -29,7 +29,6 @@ function setup() {
   searchInput.attribute("min", "1");
   searchInput.attribute("max", "118");
   searchInput.input(handleSearch);
-  searchInput.name("atomic-number");
 
   elementLabel = document.getElementById("elementLabel");
   
@@ -229,6 +228,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
