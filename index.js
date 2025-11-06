@@ -18,6 +18,8 @@ function setup() {
   angleMode(DEGREES);
   textAlign(CENTER, CENTER);
 
+  Object.values(elementsData); //typecast into array
+
   // input field
   searchInput = createInput("");
   searchInput.id("sInput");
@@ -224,6 +226,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
