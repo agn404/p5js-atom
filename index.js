@@ -13,7 +13,7 @@ function setup() {
   
   vw = windowWidth;
   vh = windowHeight;
-  canvas = createCanvas(document.getElementById('canvasParent').clientWidth * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
+  canvas = createCanvas(vw * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
   canvas.parent("#canvasParent");
   textFont("JetBrains Mono");
   angleMode(DEGREES);
@@ -234,6 +234,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
