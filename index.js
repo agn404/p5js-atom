@@ -10,9 +10,12 @@ function preload() {
 }
 
 function setup() {
+
+  console.log(elementsData, Array.isArray(elementsData));
+  
   vw = windowWidth;
   vh = windowHeight;
-  canvas = createCanvas(vw * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
+  canvas = createCanvas(document.getElementById('canvasParent').clientWidth * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
   canvas.parent("#canvasParent");
   textFont("JetBrains Mono");
   angleMode(DEGREES);
@@ -50,9 +53,8 @@ function handleSearch() {
 
 function draw() {
   background(24,13,30);
+  
   drawLDC(atomicNumber);
-
-  console.log(elementsData, Array.isArray(elementsData));
 }
 
 function drawLDC(atomicNumber) {
@@ -228,6 +230,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
