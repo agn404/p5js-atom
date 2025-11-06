@@ -19,8 +19,6 @@ function setup() {
   angleMode(DEGREES);
   textAlign(CENTER, CENTER);
 
-  Object.values(elementsData); //typecast into array
-
   // input field
   searchInput = createInput("");
   searchInput.id("sInput");
@@ -51,7 +49,7 @@ function handleSearch() {
 
 function draw() {
   
-  console.log(elementsData, Array.isArray(elementsData));
+  Object.values(elementsData); //typecast (risky)
   
   background(24,13,30);
   
@@ -231,6 +229,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
