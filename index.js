@@ -10,8 +10,6 @@ function preload() {
 }
 
 function setup() {
-
-  console.log(elementsData, Array.isArray(elementsData));
   
   vw = windowWidth;
   vh = windowHeight;
@@ -52,6 +50,9 @@ function handleSearch() {
 }
 
 function draw() {
+  
+  console.log(elementsData, Array.isArray(elementsData));
+  
   background(24,13,30);
   
   drawLDC(atomicNumber);
@@ -230,6 +231,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
