@@ -51,6 +51,8 @@ function handleSearch() {
 function draw() {
   background(24,13,30);
   drawLDC(atomicNumber);
+
+  console.log(elementsData, Array.isArray(elementsData));
 }
 
 function drawLDC(atomicNumber) {
@@ -226,6 +228,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
