@@ -6,10 +6,7 @@ let atomicNumber = 2; // default
 let elementsData;
 
 function preload() {
-  elementsData = loadJSON("elements.json",
-    () => console.log("JSON loaded!"),
-    err => console.error("Failed to load JSON:", err)
-  );
+  elementsData = loadJSON("elements.json");
 }
 
 function setup() {
@@ -23,6 +20,7 @@ function setup() {
 
   // input field
   searchInput = createInput("");
+  searchInput.id("sInput");
   searchInput.parent("atnoInput");
   searchInput.size(250, 40);
   searchInput.attribute("placeholder", "Enter atomic number (1–118)");
@@ -225,6 +223,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
