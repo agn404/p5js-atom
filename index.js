@@ -53,6 +53,9 @@ function draw() {
 }
 
 function drawLDC(atomicNumber) {
+
+  console.log("drawing");
+  
   const pr = ceil(atomicNumber);
   const el = pr;
   const ne = getNeutron(atomicNumber);
@@ -222,6 +225,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
