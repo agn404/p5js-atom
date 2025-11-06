@@ -2,7 +2,7 @@ let vw, vh;
 let canvas;
 let searchInput;
 let elementLabel;
-let atomicNumber = 8; // default
+let atomicNumber = 2; // default
 let elementsData;
 
 function preload() {
@@ -23,7 +23,6 @@ function setup() {
 
   // input field
   searchInput = createInput("");
-  searchInput.id("sInput");
   searchInput.parent("atnoInput");
   searchInput.size(250, 40);
   searchInput.attribute("placeholder", "Enter atomic number (1–118)");
@@ -223,6 +222,7 @@ function toSuperscript(num) {
     .map(d => superscripts[parseInt(d)])
     .join("");
 }
+
 
 
 
