@@ -236,6 +236,7 @@ function toSuperscript(num) {
 }
 
 function windowResized() {
-  canvas.resizeCanvas(windowWidth * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
+  canvas.resizeCanvas(vw * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
   redraw(); // optional if using noLoop()
 }
+
