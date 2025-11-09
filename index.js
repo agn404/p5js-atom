@@ -99,7 +99,6 @@ function drawEDS(atomicNumber) {
   pop();
 
 // draw shells + electrons
-const shells = getShellDistribution(atomicNumber);
   push();
   translate(w2, hst);
   noFill();
@@ -257,5 +256,6 @@ function windowResized() {
   canvas.resizeCanvas(vw * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
   redraw(); // optional if using noLoop()
 }
+
 
 
