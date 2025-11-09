@@ -5,6 +5,8 @@ let elementLabel;
 let atomicNumber = 2; // default
 let elementsData;
 
+//test
+
 function preload() {
   elementsData = loadJSON("elements.json");
 }
@@ -256,6 +258,7 @@ function windowResized() {
   canvas.resizeCanvas(vw * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
   redraw(); // optional if using noLoop()
 }
+
 
 
 
