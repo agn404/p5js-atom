@@ -53,24 +53,19 @@ function handleSearch() {
 
 function draw() {
   
-  console.log(elementsData.find(e => e.number === 2)); //flag
-  //Object.values(elementsData); //typecast (risky)
-  
   background(24,13,30);
   
-  drawLDC(atomicNumber);
+  drawEDS(atomicNumber); //electron dot structure
 }
 
-function drawLDC(atomicNumber) {
-
-  console.log("drawing");
+function drawEDS(atomicNumber) {
   
   const pr = ceil(atomicNumber);
   const el = pr;
   const ne = getNeutron(atomicNumber);
   const w2 = width / 2;
   const h2 = height / 2;
-  const hst = h2 - 0.1 * height; //standard height
+  const hst = h2 - 0.1 * height; //standard height (draw EDS)
 
   // draw nucleus
   fill(250, 100, 120);
@@ -84,9 +79,9 @@ function drawLDC(atomicNumber) {
   textAlign(LEFT);
   const fontSize = 17;
   textSize(fontSize);
-  text(`protons: ${pr}`,20, hst + fontSize * 3);
-  text(`neutrons: ${ne}`, 20, hst + fontSize * 4.5);
-  text(`electrons: ${el}`, 20, hst + fontSize * 6);
+  text(`protons: ${pr}`,20, height - fontSize * 0.15); //proton
+  text(`neutrons: ${ne}`, 20, height - fontSize * 1.15); //neutron
+  text(`electrons: ${el}`, 20, height - fontSize * 2.15); //electron
   textSize(20);
   const configStr = getEleconfig(atomicNumber);
   const map = { "0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹" }; //map digits to superscript
@@ -94,37 +89,60 @@ function drawLDC(atomicNumber) {
   letter + num.split('').map(d => map[d]).join('')
 );
 
-text(`config: ${displayConfig}`, 20, hst + fontSize * 7.5);
+  text(`config: ${displayConfig}`, 20, height - fontSize * 3.15); //config spdf
+  
+  const shells = getShellDistribution(atomicNumber);
+  const valence = shells[shells.length - 1];
+  const valency = valence > 4 ? 8 - valence : valence;
+  text(`valence electrons: ${valence}`, 20, height - fontSize * 4.15); //val elec
+  text(`valency: ${valency}`, 20, height - fontSize * 5.15); //valency
   pop();
 
 // draw shells + electrons
 const shells = getShellDistribution(atomicNumber);
-push();
-translate(w2, hst);
-noFill();
-stroke(108, 66, 100);
-strokeWeight(1.5);
-let baseRadius = 25;
+  push();
+  translate(w2, hst);
+  noFill();
+  stroke(108, 66, 100);
+  strokeWeight(1.5);
+  let baseRadius = 25;
 
-for (let i = 0; i < shells.length; i++) {
-  const r = baseRadius * (i + 1);
-  ellipse(0, 0, r*2, r*2); //shell
+  for (let i = 0; i < shells.length; i++) {
+    const r = baseRadius * (i + 1);
+    ellipse(0, 0, r*2, r*2); //shell
   
-  const electrons = shells[i];
-  const angleStep = 360 / electrons;
+    const electrons = shells[i];
+    const angleStep = 360 / electrons;
   
-  for (let j = 0; j < electrons; j++) {
-    const angle = j * angleStep;
-    const x = cos(angle) * r;
-    const y = sin(angle) * r;
-    push();
-    noStroke();
-    fill(216, 112, 175);
-    circle(x, y, 10); //electron
-    pop();
+    for (let j = 0; j < electrons; j++) {
+      const angle = j * angleStep;
+      const x = cos(angle) * r;
+      const y = sin(angle) * r;
+      push();
+      noStroke();
+      fill(216, 112, 175);
+      circle(x, y, 10); //electron
+      pop();
+    }
   }
+  pop();
+drawKLNMShellsHorizontal(shells, w2, h2 + 100);
 }
-pop();
+
+// helper to draw KLMN horizontal
+function drawKLNMShellsHorizontal(shells, startX, startY, spacing = 50) {
+  const shellNames = ['K','L','M','N','O','P','Q'];
+
+  textAlign(CENTER, BOTTOM);
+  textSize(18);
+  for (let i = 0; i < shells.length; i++) {
+    text(shellNames[i], startX + i*spacing, startY);
+  }
+
+  textAlign(CENTER, TOP);
+  for (let i = 0; i < shells.length; i++) {
+    text(shells[i], startX + i*spacing, startY + 5); // 5px below letters
+  }
 }
 
 function getShellDistribution(atomicNumber) {
@@ -239,4 +257,5 @@ function windowResized() {
   canvas.resizeCanvas(vw * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
   redraw(); // optional if using noLoop()
 }
+
 
