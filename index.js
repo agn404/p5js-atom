@@ -269,9 +269,10 @@ function toSuperscript(num) {
 }
 
 function windowResized() {
-  canvas.resizeCanvas(vw * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
+  resizeCanvas(vw * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
   redraw(); // optional if using noLoop()
 }
+
 
 
 
