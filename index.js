@@ -136,6 +136,10 @@ function drawKLNMShellsCentered(shells, labelEl) {
 
   // get label position
   const rect = labelEl.getBoundingClientRect();
+  const canvasRect = canvas.elt.getBoundingClientRect();
+  // convert to canvas coordinates
+  const labelX = rect.left - canvasRect.left + rect.width / 2;
+  const labelY = rect.bottom - canvasRect.top + 10; // 10px below label
   const labelX = rect.left + rect.width / 2;
   const labelY = rect.bottom + 10; // 10px below the label
 
@@ -270,6 +274,7 @@ function windowResized() {
   canvas.resizeCanvas(vw * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
   redraw(); // optional if using noLoop()
 }
+
 
 
 
