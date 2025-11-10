@@ -17,7 +17,7 @@ function setup() {
   vh = windowHeight;
   canvas = createCanvas(vw * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
   canvas.parent("#canvasParent");
-  textFont("JetBrains Mono");
+  textFont("Inter");
   angleMode(DEGREES);
   textAlign(CENTER, CENTER);
 
@@ -81,23 +81,22 @@ function drawEDS(atomicNumber) {
   textAlign(LEFT);
   const fontSize = 17;
   textSize(fontSize);
-  text(`protons: ${pr}`,20, height - fontSize * 0.15); //proton
-  text(`neutrons: ${ne}`, 20, height - fontSize * 1.15); //neutron
-  text(`electrons: ${el}`, 20, height - fontSize * 2.15); //electron
-  textSize(20);
+  text(`protons: ${pr}`,20, height - fontSize); //proton
+  text(`neutrons: ${ne}`, 20, height - fontSize * 2); //neutron
+  text(`electrons: ${el}`, 20, height - fontSize * 3); //electron
   const configStr = getEleconfig(atomicNumber);
   const map = { "0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹" }; //map digits to superscript
   const displayConfig = configStr.replace(/([spdf])(\d+)/g, (_, letter, num) => //only replace after [spdf]
   letter + num.split('').map(d => map[d]).join('')
 );
 
-  text(`config: ${displayConfig}`, 20, height - fontSize * 3.15); //config spdf
+  text(`config: ${displayConfig}`, 20, height - fontSize * 4); //config spdf
   
   const shells = getShellDistribution(atomicNumber);
   const valence = shells[shells.length - 1];
   const valency = valence > 4 ? 8 - valence : valence;
-  text(`valence electrons: ${valence}`, 20, height - fontSize * 4.15); //val elec
-  text(`valency: ${valency}`, 20, height - fontSize * 5.15); //valency
+  text(`valence electrons: ${valence}`, 20, height - fontSize * 5); //val elec
+  text(`valency: ${valency}`, 20, height - fontSize * 6); //valency
   pop();
 
 // draw shells + electrons
@@ -127,23 +126,35 @@ function drawEDS(atomicNumber) {
     }
   }
   pop();
-drawKLNMShellsHorizontal(shells, w2, h2 + 100);
+drawKLNMShellsCentered(shells, elementLabel);
 }
 
 // helper to draw KLMN horizontal
-function drawKLNMShellsHorizontal(shells, startX, startY, spacing = 50) {
+function drawKLNMShellsCentered(shells, labelEl) {
   const shellNames = ['K','L','M','N','O','P','Q'];
+  const spacing = 50; // horizontal spacing per shell
 
+  // get label position
+  const rect = labelEl.getBoundingClientRect();
+  const labelX = rect.left + rect.width / 2;
+  const labelY = rect.bottom + 10; // 10px below the label
+
+  push();
   textAlign(CENTER, BOTTOM);
   textSize(18);
+
+  const totalWidth = (shells.length - 1) * spacing; // width of full display
   for (let i = 0; i < shells.length; i++) {
-    text(shellNames[i], startX + i*spacing, startY);
+    const x = labelX - totalWidth/2 + i*spacing;
+    text(shellNames[i], x, labelY);
   }
 
   textAlign(CENTER, TOP);
   for (let i = 0; i < shells.length; i++) {
-    text(shells[i], startX + i*spacing, startY + 5); // 5px below letters
+    const x = labelX - totalWidth/2 + i*spacing;
+    text(shells[i], x, labelY + 5); // 5px below letters
   }
+  pop();
 }
 
 function getShellDistribution(atomicNumber) {
@@ -156,6 +167,7 @@ function getShellDistribution(atomicNumber) {
   }
 
   return shells.filter(s => s > 0); // remove empty shells
+
 }
 
 function getEleconfigObj(atomicNumber) {
@@ -258,6 +270,7 @@ function windowResized() {
   canvas.resizeCanvas(vw * 0.8, document.getElementById('canvasParent').clientHeight * 0.7);
   redraw(); // optional if using noLoop()
 }
+
 
 
 
